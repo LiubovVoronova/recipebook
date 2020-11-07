@@ -5,6 +5,8 @@ import { AppComponent } from './app.component';
 import { RecipeListComponent } from './recipes/recipe-list.component';
 import { RecipeItemComponent } from './recipes/recipe-item.component';
 import { NavbarComponent } from './nav/navbar.component';
+import { RecipeService } from './recipes/shared/recipe.service';
+import { ToastrServise } from './common/toastr.service';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,10 @@ import { NavbarComponent } from './nav/navbar.component';
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [
+    RecipeService,
+    ToastrServise
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
