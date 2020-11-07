@@ -6,6 +6,9 @@ export class RecipeService {
   getRecipes() {
     return recipes;
   }
+  getOneRecipe(id: number) {
+    return recipes.find(recipe => recipe.id === id);
+  }
 }
 
 const recipes = [

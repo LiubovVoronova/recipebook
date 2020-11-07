@@ -7,16 +7,20 @@ import { RecipeItemComponent } from './recipes/recipe-item.component';
 import { NavbarComponent } from './nav/navbar.component';
 import { RecipeService } from './recipes/shared/recipe.service';
 import { ToastrServise } from './common/toastr.service';
+import { RecipeDetailsComponent } from './recipes/recipe-details/recipe-details.component';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
   declarations: [
     AppComponent,
     RecipeListComponent,
     RecipeItemComponent,
-    NavbarComponent
+    NavbarComponent,
+    RecipeDetailsComponent,
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule
   ],
   providers: [
     RecipeService,
