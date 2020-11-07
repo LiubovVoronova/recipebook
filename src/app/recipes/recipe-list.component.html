@@ -1,5 +1,10 @@
 <div>
   <h1>Recipe Book</h1>
   <hr>
-  <app-recipe-item [recipeItem]="recipe"></app-recipe-item>
+  <div class="row">
+    <div class="col-md-5"
+         *ngFor="let recipe of recipes">
+      <app-recipe-item [recipeItem]="recipe"></app-recipe-item>
+    </div>
+  </div>
 </div>
