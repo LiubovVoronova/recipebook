@@ -3,7 +3,8 @@ import {Component, Input, Output, EventEmitter} from '@angular/core';
 @Component({
   selector: 'app-recipe-item',
   template: `
-    <div class="well hoverwell thumbnail">
+    <div class="well hoverwell thumbnail"
+         [routerLink]="['/recipes', recipeItem.id]">
       <img src="{{recipeItem.image}}" alt="recipeItem.title">
       <div>
         <h3>{{recipeItem.title}}</h3>

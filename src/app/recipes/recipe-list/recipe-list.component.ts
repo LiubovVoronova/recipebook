@@ -1,9 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {RecipeService} from './shared/recipe.service';
-import {ToastrServise} from '../common/toastr.service';
+import {RecipeService} from '../shared/recipe.service';
+import {ToastrServise} from '../../common/toastr.service';
 
 @Component({
-  selector: 'app-recipe-list',
   templateUrl: './recipe-list.component.html'
 })
 
