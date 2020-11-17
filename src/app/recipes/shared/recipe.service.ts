@@ -1,10 +1,14 @@
 import {Injectable} from '@angular/core';
+import {Subject} from 'rxjs';
 
 @Injectable()
 
 export class RecipeService {
   getRecipes() {
-    return recipes;
+    const subject = new Subject()
+    setTimeout(() => { subject.next(recipes); subject.complete(); },
+      2000);
+    return subject;
   }
   getOneRecipe(id: number) {
     return recipes.find(recipe => recipe.id === id);

@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./create-recipe.component.css']
 })
 export class CreateRecipeComponent implements OnInit {
+  isDirty = true;
 
   constructor(private router: Router) { }
 
@@ -15,5 +16,13 @@ export class CreateRecipeComponent implements OnInit {
 
   returnToMain() {
     this.router.navigate(['/recipes']);
+  }
+}
+
+export function checkDirtyState(component: CreateRecipeComponent) {
+  if (component.isDirty) {
+    return window.confirm('You have not saved this recipe. Do you want to cancel?');
+  } else {
+    return true;
   }
 }

@@ -1,18 +1,21 @@
 import {Component, OnInit} from '@angular/core';
 import {RecipeService} from '../shared/recipe.service';
 import {ToastrServise} from '../../common/toastr.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   templateUrl: './recipe-list.component.html'
 })
 
 export class RecipeListComponent implements OnInit {
-  recipes: any[];
-  constructor(private recipeService: RecipeService, private toastr: ToastrServise) {
+  recipes: any;
+  constructor(private recipeService: RecipeService,
+              private toastr: ToastrServise,
+              private route: ActivatedRoute) {
   }
 
   ngOnInit() {
-    this.recipes = this.recipeService.getRecipes();
+    this.recipes = this.route.snapshot.data.recipes;
   }
 
   showArea(recipeArea) {
