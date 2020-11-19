@@ -7,6 +7,7 @@ import { RecipeService } from './recipes/shared/recipe.service';
 import { ToastrServise } from './common/toastr.service';
 import { RecipeRouteActivatorService } from './recipes/shared/recipe-route-activator.service';
 import { RecipeListResolverService } from './recipes/shared/recipe-list-resolver.service';
+import {AuthService} from "./user/auth.service";
 
 import { AppComponent } from './app.component';
 import { RecipeListComponent } from './recipes/recipe-list/recipe-list.component';
@@ -36,6 +37,7 @@ import { Error404Component } from './errors/404.component';
     ToastrServise,
     RecipeRouteActivatorService,
     RecipeListResolverService,
+    AuthService,
     {
       provide: 'canDeactivateCreateRecipe',
       useValue: checkDirtyState

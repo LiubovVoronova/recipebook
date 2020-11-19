@@ -1,21 +1,22 @@
 import {Injectable} from '@angular/core';
-import {Subject} from 'rxjs';
+import {Observable, Subject} from 'rxjs';
+import {Recipe} from "./recipe.model";
 
 @Injectable()
 
 export class RecipeService {
-  getRecipes() {
-    const subject = new Subject()
+  getRecipes(): Observable<Recipe[]> {
+    const subject = new Subject<Recipe[]>()
     setTimeout(() => { subject.next(recipes); subject.complete(); },
       2000);
     return subject;
   }
-  getOneRecipe(id: number) {
+  getOneRecipe(id: number): Recipe {
     return recipes.find(recipe => recipe.id === id);
   }
 }
 
-const recipes = [
+const recipes: Recipe[] = [
   {
     id: 1,
     title: 'Creamy Tomato Soup',
