@@ -7,6 +7,7 @@ import { CreateRecipeComponent } from './recipes/create-recipe/create-recipe.com
 import { Error404Component } from './errors/404.component';
 import { RecipeRouteActivatorService } from './recipes/shared/recipe-route-activator.service';
 import { RecipeListResolverService } from './recipes/shared/recipe-list-resolver.service';
+import {UserModule} from "./user/user.module";
 
 
 export const appRoutes: Routes = [
@@ -15,6 +16,7 @@ export const appRoutes: Routes = [
   { path: 'recipes/:id', component: RecipeDetailsComponent, canActivate: [RecipeRouteActivatorService]},
   { path: '404', component: Error404Component},
   { path: '', redirectTo: '/recipes', pathMatch: 'full'},
+  { path: 'user', loadChildren: () => UserModule }
 ];
 
 @NgModule({

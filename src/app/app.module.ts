@@ -13,7 +13,7 @@ import { RecipeListComponent } from './recipes/recipe-list/recipe-list.component
 import { RecipeItemComponent } from './recipes/recipe-item/recipe-item.component';
 import { NavbarComponent } from './nav/navbar.component';
 import { RecipeDetailsComponent } from './recipes/recipe-details/recipe-details.component';
-import {checkDirtyState, CreateRecipeComponent} from './recipes/create-recipe/create-recipe.component';
+import { checkDirtyState, CreateRecipeComponent} from './recipes/create-recipe/create-recipe.component';
 import { Error404Component } from './errors/404.component';
 
 
