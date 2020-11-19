@@ -1,16 +1,23 @@
 import {Injectable} from '@angular/core';
+import {Subject} from 'rxjs';
 
 @Injectable()
 
 export class RecipeService {
   getRecipes() {
-    return recipes;
+    const subject = new Subject()
+    setTimeout(() => { subject.next(recipes); subject.complete(); },
+      2000);
+    return subject;
+  }
+  getOneRecipe(id: number) {
+    return recipes.find(recipe => recipe.id === id);
   }
 }
 
 const recipes = [
   {
-    id: 52841,
+    id: 1,
     title: 'Creamy Tomato Soup',
     category: 'Starter',
     area: 'British',
@@ -19,7 +26,7 @@ const recipes = [
     ingredients: []
   },
   {
-    id: 52830,
+    id: 2,
     title: 'Crock Pot Chicken Baked Tacos',
     category: 'Chicken',
     area: 'Mexican',
@@ -28,7 +35,7 @@ const recipes = [
     ingredients: []
   },
   {
-    id: 52776,
+    id: 3,
     title: 'Chocolate Gateau',
     category: 'Dessert',
     area: 'French',

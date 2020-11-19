@@ -13,6 +13,7 @@
 
 button {
   color: #555;
+  margin-right: 3px !important;
 }
 
 .btn:focus {
