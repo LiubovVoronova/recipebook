@@ -1,11 +1,12 @@
-import {Component, Input, Output, EventEmitter} from '@angular/core';
+import {Component, Input} from '@angular/core';
+import {Recipe} from "../shared/recipe.model";
 
 @Component({
   selector: 'app-recipe-item',
   template: `
     <div class="well hoverwell thumbnail"
          [routerLink]="['/recipes', recipeItem.id]">
-      <img src="{{recipeItem.image}}" alt="recipeItem.title">
+      <img src="{{recipeItem.image}}" alt="recipeItem.title?">
       <div>
         <h3>{{recipeItem.title}}</h3>
         <div>{{recipeItem.category}}</div>
@@ -27,5 +28,5 @@ import {Component, Input, Output, EventEmitter} from '@angular/core';
 })
 
 export class RecipeItemComponent {
-  @Input() recipeItem: any;
+  @Input() recipeItem: Recipe;
 }

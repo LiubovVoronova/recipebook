@@ -9,11 +9,3 @@ em {
   from { opacity: 0 }
   to { opacity: 1 }
 }
-
-.error input{
-  background-color: #e3c3c5;
-}
-
-.error input::placeholder {
-  color: #999;
-}

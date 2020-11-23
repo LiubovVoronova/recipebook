@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 
 import {RecipeService} from '../shared/recipe.service';
+import {Recipe} from "../shared/recipe.model";
 
 @Component({
   templateUrl: './recipe-details.component.html',
@@ -13,7 +14,7 @@ import {RecipeService} from '../shared/recipe.service';
 })
 
 export class RecipeDetailsComponent implements OnInit {
-  recipe: any;
+  recipe: Recipe;
 
   constructor(private recipeService: RecipeService, private route: ActivatedRoute) {}
 

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Ingredient, Recipe } from "../shared/recipe.model";
+import { RecipeService } from "../shared/recipe.service";
 
 @Component({
   selector: 'app-create-recipe',
@@ -8,10 +10,19 @@ import { Router } from '@angular/router';
 })
 export class CreateRecipeComponent implements OnInit {
   isDirty = true;
+  newRecipe: Recipe;
+  newIngredient: Ingredient;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+              private recipeService: RecipeService) { }
 
   ngOnInit(): void {
+  }
+
+  saveNewRecipe(newRecipeValues) {
+    this.recipeService.saveRecipe(newRecipeValues);
+    this.isDirty = false;
+    this.router.navigate(['/recipes']);
   }
 
   returnToMain() {
