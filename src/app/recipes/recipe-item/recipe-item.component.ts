@@ -6,7 +6,7 @@ import {Recipe} from "../shared/recipe.model";
   template: `
     <div class="well hoverwell thumbnail"
          [routerLink]="['/recipes', recipeItem.id]">
-      <img src="{{recipeItem.image}}" alt="recipeItem.title">
+      <img src="{{recipeItem.image}}" alt="recipeItem.title?">
       <div>
         <h3>{{recipeItem.title}}</h3>
         <div>{{recipeItem.category}}</div>

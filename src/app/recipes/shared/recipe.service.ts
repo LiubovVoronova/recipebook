@@ -5,6 +5,7 @@ import {Recipe} from "./recipe.model";
 @Injectable()
 
 export class RecipeService {
+
   getRecipes(): Observable<Recipe[]> {
     const subject = new Subject<Recipe[]>()
     setTimeout(() => { subject.next(recipes); subject.complete(); },
@@ -14,6 +15,14 @@ export class RecipeService {
   getOneRecipe(id: number): Recipe {
     return recipes.find(recipe => recipe.id === id);
   }
+
+  saveRecipe(newRecipe) {
+    newRecipe.id = 50;
+    newRecipe.ingredients = [];
+    console.log(newRecipe)
+    recipes.push(newRecipe);
+  }
+
 }
 
 const recipes: Recipe[] = [
