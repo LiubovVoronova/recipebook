@@ -2,18 +2,31 @@
 <hr>
 <div class="col-md-6">
   <h3>[Recipe name]</h3>
-  <form #newRecipeForm="ngForm" (ngSubmit)="saveNewRecipe(newRecipeForm.value)" autocomplete="off" novalidate>
+  <form #newRecipeForm="ngForm"
+        (ngSubmit)="saveNewRecipe(newRecipeForm.value)"
+        autocomplete="off"
+        novalidate>
     <div class="form-group"
          [ngClass]="{'error': newRecipeForm.controls.name?.invalid && newRecipeForm.controls.name?.touched}">
       <label for="recipeName">Recipe Name:</label>
       <em *ngIf="newRecipeForm.controls.name?.invalid && (newRecipeForm.controls.name?.touched)">Required</em>
-      <input (ngModel)="newRecipe.title" name="title" required id="recipeName" type="text" class="form-control" placeholder="Name of your recipe" />
+      <input [(ngModel)]="newRecipe.title"
+             name="title"
+             required
+             id="recipeName"
+             type="text"
+             class="form-control"
+             placeholder="Name of your recipe" />
     </div>
     <div class="form-group"
          [ngClass]="{'error': newRecipeForm.controls.category?.invalid && newRecipeForm.controls.category?.touched}">
       <label for="recipeCategory">Recipe category:</label>
       <em *ngIf="newRecipeForm.controls.category?.invalid && (newRecipeForm.controls.category?.touched)">Required</em>
-      <select (ngModel)="newRecipe.category" name="category" required id="recipeCategory" class="form-control">
+      <select [(ngModel)]="newRecipe.category"
+              name="category"
+              required
+              id="recipeCategory"
+              class="form-control">
         <option>Breakfast</option>
         <option>Starter</option>
         <option>Dessert</option>
@@ -24,28 +37,25 @@
          [ngClass]="{'error': newRecipeForm.controls.area?.invalid && newRecipeForm.controls.area?.touched}">
       <label for="recipeArea">Recipe area:</label>
       <em *ngIf="newRecipeForm.controls.area?.invalid && (newRecipeForm.controls.area?.touched)">Required</em>
-      <input (ngModel)="newRecipe.area" name="area" required id="RecipeArea" type="text" class="form-control" placeholder="which country recipe belongs to" />
+      <input [(ngModel)]="newRecipe.area"
+             name="area"
+             required
+             id="recipeArea"
+             type="text"
+             class="form-control"
+             placeholder="Which country recipe belongs to" />
     </div>
     <div class="form-group"
          [ngClass]="{'error': newRecipeForm.controls.description?.invalid && newRecipeForm.controls.description?.touched}">
       <label for="RecipeDescription">Recipe description:</label>
       <em *ngIf="newRecipeForm.controls.description?.invalid && (newRecipeForm.controls.description?.touched)">Required</em>
-      <textarea (ngModel)="newRecipe.description" name="description" required id="RecipeDescription" class="form-control" placeholder="Recipe description">
+      <textarea [(ngModel)]="newRecipe.description"
+                name="description"
+                required
+                id="RecipeDescription"
+                class="form-control"
+                placeholder="Recipe description">
       </textarea>
-    </div>
-
-    <div ngModelGroup="ingredients">
-      <div class="form-group">
-        <p>Recipe Ingredients:</p>
-      </div>
-      <div class="row">
-        <div class="col-md-6">
-          <input (ngModel)="newIngredient.name" name="ingName" id="ingName" type="text" class="form-control" placeholder="Ingredient name" />
-        </div>
-        <div class="col-md-6" >
-          <input (ngModel)="newIngredient.measure" name="measure" id="measure" type="text" class="form-control" placeholder="Measure" />
-        </div>
-      </div>
     </div>
 
     <div class="form-group"
@@ -53,14 +63,56 @@
       <label for="imageUrl">Image:</label>
       <em *ngIf="newRecipeForm.controls.imageUrl?.invalid && newRecipeForm.controls.imageUrl?.touched && newRecipeForm.controls.imageUrl?.errors.required">Required</em>
       <em *ngIf="newRecipeForm.controls.imageUrl?.invalid && newRecipeForm.controls.imageUrl?.touched  && newRecipeForm.controls.imageUrl?.errors.pattern">Must be a png or jpg url</em>
-      <input (ngModel)="newRecipe.image" name="image" required pattern=".*\/.*.(png|jpg)" id="imageUrl" type="text" class="form-control" placeholder="url of image" />
-      <img [src]="newRecipeForm.controls.imageUrl.value" *ngIf="newRecipeForm.controls.imageUrl?.valid" width="150px"/>
+      <input [(ngModel)]="newRecipe.image"
+             name="image"
+             required
+             pattern=".*\/.*.(png|jpg)"
+             id="imageUrl"
+             type="text"
+             class="form-control"
+             placeholder="url of image" />
+      <img *ngIf="newRecipeForm.controls.imageUrl?.valid"
+           [src]="newRecipeForm.controls.imageUrl.value"
+           alt=""
+           width="150px"/>
     </div>
 
-    <button type="submit" class="btn btn-primary">Save</button>
-    <button
-      type="button"
-      class="btn btn-default"
-      (click)="returnToMain()">Cancel</button>
+    <div ngModelGroup="ingredients">
+      <div class="form-group">
+        <p class="mt-2">Recipe Ingredients:</p>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <label for="ingName">Ingredient name</label>
+            <input [(ngModel)]="newIngredient.name"
+                   name="ingName"
+                   id="ingName"
+                   type="text"
+                   class="form-control"
+                   placeholder="Enter ingredient name" />
+        </div>
+        <div class="col-md-6" >
+          <label for="measure">Measure</label>
+            <input [(ngModel)]="newIngredient.measure"
+                   name="measure"
+                   id="measure"
+                   type="text"
+                   class="form-control"
+                   placeholder="How the ingredient is measured" />
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-auto">
+        <button type="submit"
+                class="btn btn-primary">Save</button>
+      </div>
+      <div class="col-auto">
+        <button type="button"
+                class="btn btn-default"
+                (click)="returnToMain()">Cancel</button>
+      </div>
+    </div>
   </form>
 </div>
