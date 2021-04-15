@@ -18,6 +18,7 @@ import { RecipeDetailsComponent } from './recipes/recipe-details/recipe-details.
 import { checkDirtyState, CreateRecipeComponent} from './recipes/create-recipe/create-recipe.component';
 import { Error404Component } from './errors/404.component';
 import { IngredientListComponent } from './recipes/ingredient-list/ingredient-list.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { IngredientListComponent } from './recipes/ingredient-list/ingredient-li
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    NgbModule
   ],
   providers: [
     RecipeService,
