@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../auth.service";
 import {Router} from "@angular/router";
+import {ToastrServise} from "../../common/toastr.service";
 
 @Component({
   selector: 'app-profile',
@@ -14,6 +15,7 @@ export class ProfileComponent  implements OnInit {
   private lastName;
 
   constructor(private authService: AuthService,
+              private toastr: ToastrServise,
               private router: Router) {}
 
   ngOnInit(): void {

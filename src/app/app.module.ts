@@ -17,6 +17,7 @@ import { NavbarComponent } from './nav/navbar.component';
 import { RecipeDetailsComponent } from './recipes/recipe-details/recipe-details.component';
 import { checkDirtyState, CreateRecipeComponent} from './recipes/create-recipe/create-recipe.component';
 import { Error404Component } from './errors/404.component';
+import { IngredientListComponent } from './recipes/ingredient-list/ingredient-list.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { Error404Component } from './errors/404.component';
     NavbarComponent,
     RecipeDetailsComponent,
     CreateRecipeComponent,
-    Error404Component
+    Error404Component,
+    IngredientListComponent
   ],
   imports: [
     BrowserModule,

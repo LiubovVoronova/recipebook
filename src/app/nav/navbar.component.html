@@ -38,19 +38,24 @@
           </ul>
         </li>
       </ul>
-      <form id="searchForm"
-            class="navbar-form navbar-right pr-0">
-        <div class="form-inline">
-          <input type="text"
-                 class="form-control"
-                 placeholder="Search Recipes">
-          <button class="btn btn-default">
-            Search
-          </button>
+      <div class="navbar-header navbar-right">
+        <ul class="nav navbar-nav">
+          <li>
+            <a *ngIf="!auth.isAuthenticated()"
+               [routerLink]="['user/login']">Login</a>
+            <a *ngIf="auth.isAuthenticated()"
+               [routerLink]="['user/profile']">Welcome {{ auth.currentUser.firstName }}</a>
+          </li>
+        </ul>
+      </div>
+      <form id="searchForm"  class="navbar-form navbar-right"  >
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search Recipes" >
         </div>
+        <button class="btn btn-default" >
+          Search
+        </button>
       </form>
     </div>
   </div>
-</nav>
-
-
+</div>
