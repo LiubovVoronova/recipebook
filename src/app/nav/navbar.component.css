@@ -1,8 +1,30 @@
 .nav.navbar-nav {
   font-size: 15px;
+  flex-direction: row;
+  width: 70%;
+
 }
-#searchForm {
-  margin-right: 100px;
+.navbar-header {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.navbar-header:before {
+  content: none;
+}
+
+.navbar-header:after {
+  content: none;
+}
+
+.nav-item {
+  margin-right: 10px;
+}
+
+.login-button {
+  font-size: 15px;
+  color: #ebebeb;
 }
 
 @media (max-width: 1200px) {
