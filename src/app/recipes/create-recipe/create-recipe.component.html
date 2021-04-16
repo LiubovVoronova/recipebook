@@ -10,7 +10,7 @@
          [ngClass]="{'error': newRecipeForm.controls.name?.invalid && newRecipeForm.controls.name?.touched}">
       <label for="recipeName">Recipe Name:</label>
       <em *ngIf="newRecipeForm.controls.name?.invalid && (newRecipeForm.controls.name?.touched)">Required</em>
-      <input [(ngModel)]="newRecipe.title"
+      <input ngModel
              name="title"
              required
              id="recipeName"
@@ -22,13 +22,14 @@
          [ngClass]="{'error': newRecipeForm.controls.category?.invalid && newRecipeForm.controls.category?.touched}">
       <label for="recipeCategory">Recipe category:</label>
       <em *ngIf="newRecipeForm.controls.category?.invalid && (newRecipeForm.controls.category?.touched)">Required</em>
-      <select [(ngModel)]="newRecipe.category"
+      <select ngModel
               name="category"
               required
               id="recipeCategory"
               class="form-control">
         <option>Breakfast</option>
         <option>Starter</option>
+        <option>Main course</option>
         <option>Dessert</option>
         <option>Vegetarian</option>
       </select>
@@ -37,7 +38,7 @@
          [ngClass]="{'error': newRecipeForm.controls.area?.invalid && newRecipeForm.controls.area?.touched}">
       <label for="recipeArea">Recipe area:</label>
       <em *ngIf="newRecipeForm.controls.area?.invalid && (newRecipeForm.controls.area?.touched)">Required</em>
-      <input [(ngModel)]="newRecipe.area"
+      <input ngModel
              name="area"
              required
              id="recipeArea"
@@ -49,7 +50,7 @@
          [ngClass]="{'error': newRecipeForm.controls.description?.invalid && newRecipeForm.controls.description?.touched}">
       <label for="RecipeDescription">Recipe description:</label>
       <em *ngIf="newRecipeForm.controls.description?.invalid && (newRecipeForm.controls.description?.touched)">Required</em>
-      <textarea [(ngModel)]="newRecipe.description"
+      <textarea ngModel
                 name="description"
                 required
                 id="RecipeDescription"
@@ -63,7 +64,7 @@
       <label for="imageUrl">Image:</label>
       <em *ngIf="newRecipeForm.controls.imageUrl?.invalid && newRecipeForm.controls.imageUrl?.touched && newRecipeForm.controls.imageUrl?.errors.required">Required</em>
       <em *ngIf="newRecipeForm.controls.imageUrl?.invalid && newRecipeForm.controls.imageUrl?.touched  && newRecipeForm.controls.imageUrl?.errors.pattern">Must be a png or jpg url</em>
-      <input [(ngModel)]="newRecipe.image"
+      <input ngModel
              name="image"
              required
              pattern=".*\/.*.(png|jpg)"
@@ -84,7 +85,7 @@
       <div class="row">
         <div class="col-md-6">
           <label for="ingName">Ingredient name</label>
-            <input [(ngModel)]="newIngredient.name"
+            <input ngModel
                    name="ingName"
                    id="ingName"
                    type="text"
@@ -92,21 +93,22 @@
                    placeholder="Enter ingredient name" />
         </div>
         <div class="col-md-6" >
-          <label for="measure">Measure</label>
-            <input [(ngModel)]="newIngredient.measure"
+          <label for="measure">Quantity</label>
+            <input ngModel
                    name="measure"
                    id="measure"
                    type="text"
                    class="form-control"
-                   placeholder="How the ingredient is measured" />
+                   placeholder="Enter ingredient amount and measure" />
         </div>
       </div>
     </div>
 
-    <div class="row">
+    <div class="form-row pt-3">
       <div class="col-auto">
         <button type="submit"
-                class="btn btn-primary">Save</button>
+                class="btn btn-primary"
+                >Add</button>
       </div>
       <div class="col-auto">
         <button type="button"

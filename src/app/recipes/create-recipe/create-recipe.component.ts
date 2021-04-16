@@ -10,8 +10,6 @@ import { RecipeService } from "../shared/recipe.service";
 })
 export class CreateRecipeComponent implements OnInit {
   isDirty = true;
-  newRecipe: Recipe;
-  newIngredient: Ingredient;
 
   constructor(private router: Router,
               private recipeService: RecipeService) { }
@@ -20,7 +18,7 @@ export class CreateRecipeComponent implements OnInit {
   }
 
   saveNewRecipe(newRecipeValues) {
-    this.recipeService.saveRecipe(newRecipeValues);
+    this.recipeService.addRecipe(newRecipeValues);
     this.isDirty = false;
     this.router.navigate(['/recipes']);
   }
