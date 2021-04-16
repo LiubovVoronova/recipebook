@@ -23,31 +23,25 @@
              [routerLink]="['/recipes/new']"
              routerLinkActive="active">Create Recipe</a>
         </li>
-        <li class="nav-item dropdown">
-          <a href="#"
-             class="nav-link dropdown-toggle p-3"
-             data-toggle="dropdown"
-             role="button">
-            Recipes
-          </a>
-          <ul class="dropdown-menu">
-            <li>
-              <a href="#"
-                 class="dropdown-item">Spicy Arrabiata Penne</a>
-            </li>
-          </ul>
+        <li class="nav-item"
+            ngbDropdown>
+          <div class="nav-link p-3 dropdown-toggle"
+               ngbDropdownToggle
+               id="navbarDropdown"
+               role="button">Manage recipes
+          </div>
+          <div ngbDropdownMenu
+               class="dropdown-menu"
+               aria-labelledby="navbarDropdown">
+            <button class="btn btn-default text-left"
+                    ngbDropdownItem
+                    (click)="onSaveData()">Save all recipes</button>
+            <button class="btn btn-default text-left"
+                    ngbDropdownItem
+                    (click)="onFetchData()">Fetch recipes</button>
+          </div>
         </li>
       </ul>
-      <div class="navbar-header navbar-right">
-        <ul class="nav navbar-nav">
-          <li>
-            <a *ngIf="!auth.isAuthenticated()"
-               [routerLink]="['user/login']">Login</a>
-            <a *ngIf="auth.isAuthenticated()"
-               [routerLink]="['user/profile']">Welcome {{ auth.currentUser.firstName }}</a>
-          </li>
-        </ul>
-      </div>
       <form id="searchForm"  class="navbar-form navbar-right"  >
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Search Recipes" >
@@ -58,4 +52,4 @@
       </form>
     </div>
   </div>
-</div>
+</nav>

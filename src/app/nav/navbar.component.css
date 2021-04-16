@@ -27,6 +27,10 @@
   color: #ebebeb;
 }
 
+.dropdown-menu {
+  position: absolute;
+}
+
 @media (max-width: 1200px) {
   #searchForm {
     display: none;

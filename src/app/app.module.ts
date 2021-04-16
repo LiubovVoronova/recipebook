@@ -1,14 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import { AppRoutingModule } from './app-routing.module';
 
 import { RecipeService } from './recipes/shared/recipe.service';
 import { ToastrServise } from './common/toastr.service';
 import { RecipeRouteActivatorService } from './recipes/shared/recipe-route-activator.service';
-import { RecipeListResolverService } from './recipes/shared/recipe-list-resolver.service';
-import {AuthService} from "./user/auth.service";
+import { AuthService } from "./user/auth.service";
 
 import { AppComponent } from './app.component';
 import { RecipeListComponent } from './recipes/recipe-list/recipe-list.component';
@@ -18,6 +17,8 @@ import { RecipeDetailsComponent } from './recipes/recipe-details/recipe-details.
 import { checkDirtyState, CreateRecipeComponent} from './recipes/create-recipe/create-recipe.component';
 import { Error404Component } from './errors/404.component';
 import { IngredientListComponent } from './recipes/ingredient-list/ingredient-list.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClientModule } from "@angular/common/http";
 
 
 @NgModule({
@@ -34,13 +35,15 @@ import { IngredientListComponent } from './recipes/ingredient-list/ingredient-li
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    NgbModule
   ],
   providers: [
     RecipeService,
     ToastrServise,
     RecipeRouteActivatorService,
-    RecipeListResolverService,
     AuthService,
     {
       provide: 'canDeactivateCreateRecipe',

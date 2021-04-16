@@ -18,7 +18,18 @@ button {
 
 .btn:focus {
   outline: none !important;
+  box-shadow: none;
 }
+
+.btn:active {
+  background-color: #b15315;
+}
+
+.btn:disabled {
+  background-color: #df691a;
+  border-color: transparent;
+}
+
 
 [hidden] {
   display: none !important;
