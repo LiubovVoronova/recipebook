@@ -30,6 +30,9 @@ button {
   border-color: transparent;
 }
 
+.form-control {
+  background-clip: border-box;
+}
 
 [hidden] {
   display: none !important;
@@ -46,4 +49,7 @@ button {
 }
 .toast-warning {
   background-color: #f89406;
+}
+.toast-message {
+  font-size: 12px;
 }
