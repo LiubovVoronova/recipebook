@@ -21,26 +21,36 @@ export class LoginComponent {
 
   onLogin(form) {
     if (form.invalid) return;
-
     this.isLoading = true;
 
+    const email = form.value.userEmail;
+    const password = form.value.userPassword;
+
     if (this.isLoginMode) {
-      // dd
+      this.authService.login(email, password)
+        .subscribe(responseData => {
+            console.log(responseData)
+            this.toastr.success('User logged in');
+            this.isLoading = false;
+            this.router.navigate(['recipes'])
+          }, errorMessage => {
+            this.toastr.error(errorMessage)
+            this.isLoading = false;
+          });
     } else {
-      this.authService.signUp(form.value.userEmail, form.value.userPassword)
+      this.authService.signUp(email, password)
         .subscribe(responseData => {
           console.log(responseData)
           this.toastr.success('User successfully signed in');
           this.isLoading = false;
+          this.router.navigate(['recipes'])
         }, errorMessage => {
-          console.log(errorMessage)
           this.toastr.error(errorMessage)
           this.isLoading = false;
         });
     }
 
     form.reset()
-    // this.router.navigate(['recipes'])
   }
 
   onCancel() {

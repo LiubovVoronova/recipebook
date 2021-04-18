@@ -1,15 +1,14 @@
-export interface User {
-  id: number,
-  firstName: string,
-  lastName: string,
-  email: string
-}
+export class User {
+  constructor(public email: string,
+              public id: string,
+              private _token: string,
+              private _tokenExpDate: Date) {
+  }
 
-export interface AuthResponseData {
-  kind: string,
-  idToken: string,
-  email: string,
-  refreshToken:	string,
-  expiresIn: string,
-  localId: string
+  get token() {
+    if(!this._tokenExpDate || this._tokenExpDate < new Date()) {
+      return null;
+    }
+    return this._token;
+  }
 }

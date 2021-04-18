@@ -2,12 +2,16 @@
   <div class="container-fluid">
     <div class="navbar-header px-3">
       <a class="navbar-brand">ngEvents</a>
-      <a *ngIf="!auth.isAuthenticated()"
+      <a *ngIf="!isAuthenticated"
          [routerLink]="['user/login']"
-         class="login-button btn btn-link">Login</a>
-      <a *ngIf="auth.isAuthenticated()"
-         [routerLink]="['user/profile']"
-         class="navbar-brand login-button">Welcome {{ auth.currentUser.firstName }}</a>
+         class="login-button btn btn-link">Login
+        <i class="fa fa-sign-in ml-2"></i>
+      </a>
+      <a *ngIf="isAuthenticated"
+         class="login-button btn btn-link"
+         (click)="onLogoutUser()">Logout
+        <i class="fa fa-sign-in ml-2"></i>
+      </a>
     </div>
 
     <div class="collapse navbar-collapse pl-0">
@@ -23,7 +27,8 @@
              [routerLink]="['/recipes/new']"
              routerLinkActive="active">Create Recipe</a>
         </li>
-        <li class="nav-item"
+        <li *ngIf="isAuthenticated"
+            class="nav-item"
             ngbDropdown>
           <div class="nav-link p-3 dropdown-toggle"
                ngbDropdownToggle
