@@ -11,11 +11,11 @@ import { CommonSharedModule } from '../common/common-shared.module';
 
 @NgModule({
   imports: [
-      CommonModule,
-      FormsModule,
-      ReactiveFormsModule,
-      CommonSharedModule,
-      RouterModule.forChild(userRoutes),
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    CommonSharedModule,
+    RouterModule.forChild(userRoutes),
   ],
   declarations: [
     ProfileComponent,

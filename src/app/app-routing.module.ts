@@ -8,12 +8,25 @@ import { Error404Component } from './errors/404.component';
 import { RecipeRouteActivatorService } from './recipes/shared/recipe-route-activator.service';
 import { UserModule } from "./user/user.module";
 import { RecipeListResolverService } from './recipes/shared/recipe-list-resolver.service';
+import { UserGuard } from './user/user.guard';
 
 
 export const appRoutes: Routes = [
-  { path: 'recipes/new', component: CreateRecipeComponent, canDeactivate: ['canDeactivateCreateRecipe']},
-  { path: 'recipes', component: RecipeListComponent, resolve: [RecipeListResolverService]},
-  { path: 'recipes/:id', component: RecipeDetailsComponent, canActivate: [RecipeRouteActivatorService]},
+  {
+    path: 'recipes/new',
+    component: CreateRecipeComponent,
+    canActivate: [UserGuard],
+    canDeactivate: ['canDeactivateCreateRecipe']},
+  {
+    path: 'recipes',
+    component: RecipeListComponent,
+    resolve: [RecipeListResolverService]
+  },
+  {
+    path: 'recipes/:id',
+    component: RecipeDetailsComponent,
+    canActivate: [RecipeRouteActivatorService]
+  },
   { path: '404', component: Error404Component},
   { path: '', redirectTo: '/recipes', pathMatch: 'full'},
   { path: 'user', loadChildren: () => UserModule }
