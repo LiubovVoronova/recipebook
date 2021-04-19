@@ -9,7 +9,6 @@ export class RecipeService {
   public recipesChanged = new Subject<Recipe[]>();
 
   getRecipes(): Recipe[] {
-    console.log(this.recipes)
     return this.recipes.slice();
   }
 
@@ -25,7 +24,6 @@ export class RecipeService {
 
   setRecipes(recipes: Recipe[]) {
     this.recipes = recipes;
-    console.log(this.recipes)
     this.recipesChanged.next(this.recipes.slice());
   }
 

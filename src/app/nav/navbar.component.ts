@@ -39,7 +39,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   onSearch() {
-    this.toast.success("AAA");
     this.dataStorage.getTenRandomRecipes();
   }
 }

@@ -1,10 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { RecipeService } from '../shared/recipe.service';
-import { ToastrServise } from '../../common/toastr.service';
-import { ActivatedRoute } from '@angular/router';
 import { Recipe } from "../shared/recipe.model";
 import { Subscription } from 'rxjs';
 import { AuthService } from '../../user/auth.service';
+import { DataStorageService } from '../shared/data-storage.service';
 
 @Component({
   templateUrl: './recipe-list.component.html'
@@ -12,31 +11,37 @@ import { AuthService } from '../../user/auth.service';
 
 export class RecipeListComponent implements OnInit, OnDestroy {
   recipes: Recipe[];
-  subscription: Subscription;
+  recipesSub: Subscription;
+  userSub: Subscription;
+  isAuthenticated = false;
 
-  constructor(private recipeService: RecipeService,
-              private toastr: ToastrServise,
-              private auth:AuthService) {
+  constructor(private recipeService: RecipeService, private authService: AuthService, private dataStorage: DataStorageService) {
   }
 
   ngOnInit() {
-    this.subscription = this.recipeService.recipesChanged
+    this.userSub = this.authService.currentUser.subscribe(user => {
+      this.isAuthenticated = !!user;
+    });
+
+    this.recipesSub = this.recipeService.recipesChanged
       .subscribe(
         (recipes: Recipe[]) => {
           this.recipes = recipes;
         }
       );
-    this.recipes = this.recipeService.getRecipes();
-    // if (this.auth.isAuthenticated()) {
-    //
-    // }
+
+    if (this.isAuthenticated) {
+      this.dataStorage.fetchRecipes().subscribe(result => {
+        this.recipes = result;
+      })
+    } else {
+      this.dataStorage.getTenRandomRecipes()
+    }
   }
+
+  //TODO add the Refresh button for random recipes
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
-
-  showArea(recipeArea) {
-    this.toastr.success(recipeArea);
+    this.recipesSub.unsubscribe();
   }
 }

@@ -79,10 +79,6 @@ export class AuthService {
     }, expirationDuration)
   }
 
-  isAuthenticated(): boolean {
-    return !!this.currentUser;
-  }
-
   private updateCurrentUser(email: string, id: string, token: string, expDate: number) {
     const expirationDate = new Date(new Date().getTime() + expDate * 1000);
     const user = new User(email, id, token, expirationDate);
