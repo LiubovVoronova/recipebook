@@ -4,6 +4,7 @@ import { ToastrServise } from '../../common/toastr.service';
 import { ActivatedRoute } from '@angular/router';
 import { Recipe } from "../shared/recipe.model";
 import { Subscription } from 'rxjs';
+import { AuthService } from '../../user/auth.service';
 
 @Component({
   templateUrl: './recipe-list.component.html'
@@ -15,7 +16,7 @@ export class RecipeListComponent implements OnInit, OnDestroy {
 
   constructor(private recipeService: RecipeService,
               private toastr: ToastrServise,
-              private route: ActivatedRoute) {
+              private auth:AuthService) {
   }
 
   ngOnInit() {
@@ -26,6 +27,9 @@ export class RecipeListComponent implements OnInit, OnDestroy {
         }
       );
     this.recipes = this.recipeService.getRecipes();
+    // if (this.auth.isAuthenticated()) {
+    //
+    // }
   }
 
   ngOnDestroy() {
