@@ -1,34 +1,49 @@
-<h1>Login</h1>
+<h1>{{ isLoginMode ? 'Login' : 'Sign up'}}</h1>
 <hr>
 <div class="col-md-4">
-  <form #loginForm="ngForm" (ngSubmit)="onLogin(loginForm.value)" autocomplete="off" novalidate>
+  <form #loginForm="ngForm"
+        *ngIf="!isLoading"
+        (ngSubmit)="onLogin(loginForm)"
+        autocomplete="off"
+        novalidate>
     <div class="form-group" >
-      <label for="userName">User Name:</label>
+      <label for="userEmail">Email:</label>
       <em *ngIf="loginForm.controls.userName?.invalid && (loginForm.controls.userName?.touched || mouseOverLogin)">Required</em>
-      <input (ngModel)="userName"
-             name="userName"
-             id="userName"
+      <input ngModel
+             name="userEmail"
+             id="userEmail"
              type="text"
              class="form-control"
              placeholder="User Name"
+
              required/>
     </div>
     <div class="form-group" >
       <label for="password">Password:</label>
       <em *ngIf="loginForm.controls.userPassword?.invalid && (loginForm.controls.userPassword?.touched || mouseOverLogin)">Required</em>
-      <input (ngModel)="userPassword"
+      <input ngModel
              name="userPassword"
              id="password"
              type="password"
              class="form-control"
              placeholder="Password"
+             minlength="6"
              required/>
     </div>
 
     <span (mouseenter)="mouseOverLogin=true"
           (mouseleave)="mouseOverLogin=false">
-      <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">Login</button>
+      <button type="submit"
+              class="btn btn-primary"
+              [disabled]="loginForm.invalid">{{ isLoginMode ? 'Login' : 'Sign up'}}</button>
     </span>
-    <button type="button" class="btn btn-default" (click)="onCancel()">Cancel</button>
+    <button type="button"
+            class="btn btn-secondary "
+            (click)="onSwitchButton()">{{ isLoginMode ? 'Sign up' : 'Login'}}</button>
+    <button type="button"
+            class="btn btn-default"
+            (click)="onCancel()">Cancel</button>
   </form>
+
+  <app-spinner class="text-center" *ngIf="isLoading"></app-spinner>
 </div>

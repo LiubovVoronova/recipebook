@@ -18,8 +18,8 @@ import { checkDirtyState, CreateRecipeComponent} from './recipes/create-recipe/c
 import { Error404Component } from './errors/404.component';
 import { IngredientListComponent } from './recipes/ingredient-list/ingredient-list.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { HttpClientModule } from "@angular/common/http";
-
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { AuthInterceptorService } from './user/auth-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -48,7 +48,11 @@ import { HttpClientModule } from "@angular/common/http";
     {
       provide: 'canDeactivateCreateRecipe',
       useValue: checkDirtyState
-    }
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true }
   ],
   bootstrap: [AppComponent]
 })

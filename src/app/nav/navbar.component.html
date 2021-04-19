@@ -2,12 +2,16 @@
   <div class="container-fluid">
     <div class="navbar-header px-3">
       <a class="navbar-brand">ngEvents</a>
-      <a *ngIf="!auth.isAuthenticated()"
+      <a *ngIf="!isAuthenticated"
          [routerLink]="['user/login']"
-         class="btn btn-outline">Login</a>
-      <a *ngIf="auth.isAuthenticated()"
-         [routerLink]="['user/profile']"
-         class="navbar-brand login-button">Welcome {{ auth.currentUser.firstName }}</a>
+         class="login-button btn btn-link">Login
+        <i class="fa fa-user-circle-o ml-2"></i>
+      </a>
+      <a *ngIf="isAuthenticated"
+         class="login-button btn btn-link"
+         (click)="onLogoutUser()">Logout
+        <i class="fa fa-sign-in ml-2"></i>
+      </a>
     </div>
 
     <div class="collapse navbar-collapse pl-0">
@@ -18,12 +22,14 @@
              routerLinkActive="active"
              [routerLinkActiveOptions]="{exact: true}">All Recipes</a>
         </li>
-        <li class="nav-item">
+        <li *ngIf="isAuthenticated"
+            class="nav-item">
           <a class="nav-link p-3"
              [routerLink]="['/recipes/new']"
              routerLinkActive="active">Create Recipe</a>
         </li>
-        <li class="nav-item"
+        <li *ngIf="isAuthenticated"
+            class="nav-item"
             ngbDropdown>
           <div class="nav-link p-3 dropdown-toggle"
                ngbDropdownToggle
@@ -42,13 +48,14 @@
           </div>
         </li>
       </ul>
-      <form id="searchForm"  class="navbar-form navbar-right"  >
+      <form id="searchForm"
+            class="navbar-form navbar-right pr-0">
+        <button (click)="onSearch()" class="btn btn-secondary">
+          Search
+        </button>
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Search Recipes" >
         </div>
-        <button class="btn btn-default" >
-          Search
-        </button>
       </form>
     </div>
   </div>

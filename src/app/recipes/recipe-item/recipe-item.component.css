@@ -1,0 +1,17 @@
+.well div {
+  color: #bbb;
+}
+
+img {
+  width: 150px;
+  float: left;
+  margin-right: 20px;
+}
+
+.thumbnail {
+  min-height: 190px;
+}
+
+.thumbnail:focus {
+  outline: none;
+}
