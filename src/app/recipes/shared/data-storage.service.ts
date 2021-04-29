@@ -10,7 +10,6 @@ import { AuthService } from '../../user/auth.service';
 export class DataStorageService {
   private dataBaseUrl = 'https://kitchenapp-ad647.firebaseio.com/recipes.json';
   private mealDataBaseUrl = 'https://www.themealdb.com/api/json/v1/1/random.php'
-  private randomRecipes: Recipe[] = [];
 
   constructor(private http: HttpClient, private recipeService: RecipeService, private authService: AuthService) {
   }
@@ -63,19 +62,22 @@ export class DataStorageService {
   }
 
   getTenRandomRecipes() {
+    // The Meal DB allows only one random recipe per request
     let numberOfRequests = 10;
+    let randomRecipes: Recipe[] = [];
 
     for (let i = 0; i < numberOfRequests; i++) {
       this.getRandomRecipe().subscribe(randomRecipe => {
-        if (this.randomRecipes.length > 0) {
-          const sameId = this.randomRecipes.some(item => item.id === randomRecipe.id)
-          sameId ? numberOfRequests++ : this.randomRecipes.push(randomRecipe);
+        if (randomRecipes.length > 0) {
+          const sameId = randomRecipes.some(item => item.id === randomRecipe.id)
+          sameId ? numberOfRequests++ : randomRecipes.push(randomRecipe);
         } else {
-          this.randomRecipes.push(randomRecipe);
+          randomRecipes.push(randomRecipe);
         }
 
-        this.recipeService.setRecipes(this.randomRecipes);
-
+        if (randomRecipes.length === 10) {
+          this.recipeService.setRecipes(randomRecipes);
+        }
       });
     }
   }

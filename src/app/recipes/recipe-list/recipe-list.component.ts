@@ -35,11 +35,13 @@ export class RecipeListComponent implements OnInit, OnDestroy {
         this.recipes = result;
       })
     } else {
-      this.dataStorage.getTenRandomRecipes()
+      this.dataStorage.getTenRandomRecipes();
     }
   }
 
-  //TODO add the Refresh button for random recipes
+  onRefreshRecipes() {
+    this.dataStorage.getTenRandomRecipes();
+  }
 
   ngOnDestroy() {
     this.recipesSub.unsubscribe();

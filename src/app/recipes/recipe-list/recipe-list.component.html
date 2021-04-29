@@ -1,5 +1,18 @@
 <div>
   <h1>Recipe Book</h1>
+  <div class="row justify-content-between">
+    <div class="col">
+      <p> Welcome to My Recipe Book. Here you can view random recipes for inspiration, and search for new recipes.<br>
+        After signing in you will be able to save favorite recipes or add your own.</p>
+    </div>
+    <div class="col-auto">
+      <button class="btn btn-secondary"
+              (click)="onRefreshRecipes()">
+        <i class="fa fa-refresh mr-2" aria-hidden="true"></i>
+        {{ this.isAuthenticated ? 'Show new random recipes' : 'Refresh recipes' }}
+      </button>
+    </div>
+  </div>
   <hr>
   <div class="row">
     <div class="col-md-5"

@@ -20,6 +20,7 @@ import { IngredientListComponent } from './recipes/ingredient-list/ingredient-li
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptorService } from './user/auth-interceptor.service';
+import { CommonSharedModule } from './common/common-shared.module';
 
 @NgModule({
   declarations: [
@@ -32,14 +33,15 @@ import { AuthInterceptorService } from './user/auth-interceptor.service';
     Error404Component,
     IngredientListComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    NgbModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        NgbModule,
+        CommonSharedModule
+    ],
   providers: [
     RecipeService,
     ToastrServise,
